@@ -4,8 +4,8 @@ Tags: wp-admin, admin, color, colored, post, list, highlight, post-status, posts
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B2WSC5FR2L8MU
 Requires at least: 6.0
 Tested up to: 6.2
-Requires PHP: 8.0
-Stable tag: 3.0.3
+Requires PHP: 8.3
+Stable tag: develop
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 

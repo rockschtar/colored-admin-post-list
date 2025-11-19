@@ -6,9 +6,9 @@
 * Description: Highlights the background of draft, pending, future, private, and published posts in the wordpress admin. Also supports custom post statuses!
 * Author: rockschtar
 * Author URI: http://www.eracer.de
-* Version: 3.0.3
+* Version: develop
 * Requires at least: 6.2
-* Requires PHP: 8.0
+* Requires PHP: 8.3
 * License: MIT
 * Text Domain: colored-admin-post-list
 * Domain Path: /languages

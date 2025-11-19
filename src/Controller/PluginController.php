@@ -14,21 +14,23 @@ class PluginController
     private function __construct()
     {
         register_activation_hook(CAPL_PLUGIN_FILE, $this->onActivation(...));
-        register_deactivation_hook(CAPL_PLUGIN_FILE, [$this, "onDeactivation"]);
-        register_uninstall_hook(CAPL_PLUGIN_FILE, [__CLASS__, "onUninstall"]);
-        add_action('plugins_loaded', [$this, "pluginsLoaded"]);
-        add_action("init", [$this, "loadPluginTextdomain"]);
+        register_deactivation_hook(CAPL_PLUGIN_FILE, $this->onDeactivation(...));
+        register_uninstall_hook(CAPL_PLUGIN_FILE, $this->onUninstall(...));
+        ;
+        add_action('plugins_loaded', $this->pluginsLoaded(...));
+        add_action("init", $this->loadPluginTextdomain(...));
+        ;
 
         SettingsController::init();
         StyleController::init();
     }
 
-    public function loadPluginTextdomain(): void
+    private function loadPluginTextdomain(): void
     {
         load_plugin_textdomain("colored-admin-post-list", true, CAPL_PLUGIN_RELATIVE_DIR . '/languages/');
     }
 
-    public function pluginsLoaded(): void
+    private function pluginsLoaded(): void
     {
         if (get_site_option(Option::VERSION) !== PluginVersion::get()) {
             update_site_option(Option::VERSION, PluginVersion::get());
@@ -44,11 +46,11 @@ class PluginController
         }
     }
 
-    public function onDeactivation(): void
+    private function onDeactivation(): void
     {
     }
 
-    public static function onUninstall(): void
+    private static function onUninstall(): void
     {
         delete_option(Option::INSTALLED);
 
