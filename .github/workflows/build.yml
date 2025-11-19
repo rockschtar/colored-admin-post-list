@@ -138,11 +138,7 @@ jobs:
     needs: release
     runs-on: ubuntu-latest
     steps:
-      - name: Download release artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: release
-          path: .
+      - uses: actions/checkout@master
       - name: WordPress Plugin Deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
         env:
