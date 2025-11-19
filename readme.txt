@@ -1,6 +1,6 @@
 === Colored Admin Post List ===
 Contributors: rockschtar
-Tags: wp-admin, admin, color, colored, post, list, highlight, post-status, poststatus, status, draft, pending, future, private, published, custom, custom post status, edit-flow
+Tags: color, highlight, post-status, status, edit-flow
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B2WSC5FR2L8MU
 Requires at least: 6.0
 Tested up to: 6.8
