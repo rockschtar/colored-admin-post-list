@@ -1,5 +1,5 @@
-<ruleset name="ColoredAdminPostList">
-    <description>Colored Admin Post List Coding Standards</description>
+<ruleset name="FCNPressespiegel">
+    <description>FCN Pressespiegel Coding Standards</description>
 
     <!-- Scan all files in directory -->
     <file>src</file>
