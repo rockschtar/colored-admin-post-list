@@ -13,39 +13,43 @@ class SettingsController
 
     private function __construct()
     {
-        add_action("admin_init", [&$this, "registerSettings"]);
-        add_action("admin_menu", [&$this, 'adminMenu']);
-        add_action('admin_print_scripts-settings_page_' . AdminPage::ADMIN_PAGE_OPTIONS, [&$this, "adminPrintScriptsSettings"]);
-        add_action('admin_print_scripts-posts_page_' . AdminPage::ADMIN_PAGE_OPTIONS, [&$this, "adminPrintScriptsSettings"]);
-        add_filter("plugin_action_links_" . CAPL_PLUGIN, [$this, 'pluginActionLinks']);
+        add_action("admin_init", $this->registerSettings(...));
+        ;
+        add_action("admin_menu", $this->adminMenu(...));
+        ;
+        add_action('admin_print_scripts-settings_page_' . AdminPage::ADMIN_PAGE_OPTIONS, $this->adminPrintScriptsSettings(...));
+        add_action('admin_print_scripts-posts_page_' . AdminPage::ADMIN_PAGE_OPTIONS, $this->adminPrintScriptsSettings(...));
+        ;
+        add_filter("plugin_action_links_" . CAPL_PLUGIN, $this->pluginActionLinks(...));
+        ;
     }
 
-    public function adminMenu(): void
+    private function adminMenu(): void
     {
         add_options_page(
             "Colored Post List",
             "Colored Post List",
             "manage_options",
             AdminPage::ADMIN_PAGE_OPTIONS,
-            [$this, "viewSettings"]
+            $this->viewSettings(...),
         );
     }
 
-    public function adminPrintScriptsSettings(): void
+    private function adminPrintScriptsSettings(): void
     {
         wp_enqueue_style("wp-color-picker");
         wp_enqueue_script("wp-color-picker");
         wp_enqueue_script("capl-settings", CAPL_PLUGIN_URL . "scripts/settings.js", ["jquery", "wp-color-picker"]);
     }
 
-    public function pluginActionLinks(array $links): array
+    private function pluginActionLinks(array $links): array
     {
         $settingsLink = '<a href="options-general.php?page=' . AdminPage::ADMIN_PAGE_OPTIONS . '">' . __("Settings", "colored-admin-post-list") . '</a>';
         array_unshift($links, $settingsLink);
         return $links;
     }
 
-    public function registerSettings(): void
+    private function registerSettings(): void
     {
         $dummyCallback = static function () {
         };
@@ -67,7 +71,7 @@ class SettingsController
         add_settings_field(
             Setting::ENABLED,
             __("Enabled", "colored-admin-post-list"),
-            [$this, "settingEnabled"],
+            $this->settingEnabled(...),
             Setting::PAGE_DEFAULT,
             Setting::SECTION_GENERAL
         );
@@ -113,13 +117,13 @@ class SettingsController
         }
     }
 
-    public function settingEnabled(): void
+    private function settingEnabled(): void
     {
         $checked = checked(get_option(Setting::ENABLED, false), true, false);
         echo '<input type="checkbox" name="' . Setting::ENABLED . '" value="1"' . $checked . '  />';
     }
 
-    public function viewSettings(): void
+    private function viewSettings(): void
     {
         include(CAPL_PLUGIN_DIR . "/views/settings.php");
     }

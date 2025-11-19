@@ -15,11 +15,9 @@ class PluginController
     {
         register_activation_hook(CAPL_PLUGIN_FILE, $this->onActivation(...));
         register_deactivation_hook(CAPL_PLUGIN_FILE, $this->onDeactivation(...));
-        //register_uninstall_hook(CAPL_PLUGIN_FILE, $this->onUninstall(...));
-
+        register_uninstall_hook(CAPL_PLUGIN_FILE, [__CLASS__, "onUninstall"]);
         add_action('plugins_loaded', $this->pluginsLoaded(...));
         add_action("init", $this->loadPluginTextdomain(...));
-        ;
 
         SettingsController::init();
         StyleController::init();
@@ -32,17 +30,17 @@ class PluginController
 
     private function pluginsLoaded(): void
     {
-        if (get_site_option(Option::VERSION) !== PluginVersion::get()) {
-            update_site_option(Option::VERSION, PluginVersion::get());
+        if (get_site_option(Option::VERSION->value) !== PluginVersion::get()) {
+            update_site_option(Option::VERSION->value, PluginVersion::get());
         }
     }
 
     private function onActivation(): void
     {
-        if (!get_option(Option::INSTALLED)) {
+        if (!get_option(Option::INSTALLED->value)) {
             update_option(Setting::ENABLED, "1");
-            update_option(Option::INSTALLED, "1");
-            update_option(Option::VERSION, PluginVersion::get());
+            update_option(Option::INSTALLED->value, "1");
+            update_option(Option::VERSION->value, PluginVersion::get());
         }
     }
 
@@ -50,9 +48,9 @@ class PluginController
     {
     }
 
-    private static function onUninstall(): void
+    public static function onUninstall(): void
     {
-        delete_option(Option::INSTALLED);
+        delete_option(Option::INSTALLED->value);
 
         global $wpdb;
 
@@ -61,8 +59,8 @@ class PluginController
             delete_option($option->option_name);
         }
 
-        foreach (Option::all() as $optionConstant => $optionKey) {
-            delete_option($optionKey);
+        foreach (Option::cases() as $option) {
+            delete_option($option->value);
         }
     }
 }

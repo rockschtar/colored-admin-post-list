@@ -35,16 +35,23 @@ class PostStati
     public static function get(): array
     {
         $postStati = get_post_stati([], "objects");
+        $postStati = apply_filters('capl_post_stati', $postStati);
+        $excludeTrash = apply_filters('capl_post_stati_exclude_trash', true);
+
+        if ($excludeTrash) {
+            unset($postStati['trash']);
+        }
+
         $customPostStati = [];
-        $defaultColors = DefaultColor::all();
 
         foreach ($postStati as $postStatus) {
             if ($postStatus->show_in_admin_status_list === false) {
                 continue;
             }
 
-            $defaultColor  = $defaultColors[strtoupper($postStatus->name)] ?? null;
-            $customPostStati[] = new PostStatus($postStatus->label, $postStatus->name, $defaultColor);
+            $defaultColor = DefaultColor::tryFromName(strtoupper($postStatus->name));
+            $color = $defaultColor?->value ?? '';
+            $customPostStati[] = new PostStatus($postStatus->label, $postStatus->name, $color);
         }
 
         return $customPostStati;

@@ -4,16 +4,26 @@ namespace Rockschtar\WordPress\ColoredAdminPostList\Enums;
 
 use ReflectionClass;
 
-class DefaultColor
+enum DefaultColor : string
 {
-    const DRAFT = "#FCE3F2";
-    const PENDING = "#87C5D6";
-    const FUTURE = "#C6EBF5";
-    const PRIVATE = "#F2D46F";
-    const PUBLISH = "transparent";
+    case DRAFT = "#FCE3F2";
 
-    public static function all(): array
+    case PENDING = "#87C5D6";
+
+    case FUTURE = "#C6EBF5";
+
+    case PRIVATE = "#F2D46F";
+
+    case PUBLISH = "transparent";
+
+    public static function tryFromName(string $name): ?self
     {
-        return (new ReflectionClass(self::class))->getConstants();
+        foreach (self::cases() as $case) {
+            if ($case->name === $name) {
+                return $case;
+            }
+        }
+
+        return null;
     }
 }

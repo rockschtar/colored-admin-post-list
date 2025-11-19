@@ -2,13 +2,9 @@
 
 namespace Rockschtar\WordPress\ColoredAdminPostList\Enums;
 
-class Option
+enum Option : string
 {
-    const INSTALLED = "capl_installed";
-    const VERSION = "capl-version";
-
-    public static function all(): array
-    {
-        return (new \ReflectionClass(self::class))->getConstants();
-    }
+    case INSTALLED = "capl_installed"
+    ;
+    case VERSION = "capl-version";
 }
