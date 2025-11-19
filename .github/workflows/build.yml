@@ -93,6 +93,7 @@ jobs:
         run: |
           cd release-artifact
           sed -i "s/Version:.*$/Version: ${{ github.ref_name }}/" colored-admin-post-list.php
+          sed -i "s/Stable tag:.*$/Stable tag: ${{ github.ref_name }}/" readme.txt
         shell: bash
 
       - name: Zip Repository
@@ -125,7 +126,30 @@ jobs:
           asset_path: ./release-artifact/colored-admin-post-list.zip
           asset_name: colored-admin-post-list.zip
           asset_content_type: application/zip
-  svn-trunk:
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release
+          path: |
+            release-artifact
+  wporg-deploy:
+    name: wordpress.org Deploy
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download release artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: release
+          path: .
+      - name: WordPress Plugin Deploy
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        env:
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SLUG: colored-admin-post-list # optional, remove if GitHub repo name matches SVN slug, including capitalization
+  wporg-assets-trunk:
     name: Push to trunk
     runs-on: ubuntu-latest
     needs: phpcs
