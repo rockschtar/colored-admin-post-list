@@ -3,7 +3,7 @@ Contributors: rockschtar
 Tags: wp-admin, admin, color, colored, post, list, highlight, post-status, poststatus, status, draft, pending, future, private, published, custom, custom post status, edit-flow
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B2WSC5FR2L8MU
 Requires at least: 6.0
-Tested up to: 6.2
+Tested up to: 6.8
 Requires PHP: 8.3
 Stable tag: develop
 License: GPLv3

@@ -15,8 +15,8 @@ class PluginController
     {
         register_activation_hook(CAPL_PLUGIN_FILE, $this->onActivation(...));
         register_deactivation_hook(CAPL_PLUGIN_FILE, $this->onDeactivation(...));
-        register_uninstall_hook(CAPL_PLUGIN_FILE, $this->onUninstall(...));
-        ;
+        //register_uninstall_hook(CAPL_PLUGIN_FILE, $this->onUninstall(...));
+
         add_action('plugins_loaded', $this->pluginsLoaded(...));
         add_action("init", $this->loadPluginTextdomain(...));
         ;
