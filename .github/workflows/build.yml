@@ -141,7 +141,6 @@ jobs:
       - uses: actions/checkout@master
       - name: Tagging
         run: |
-          cd release-artifact
           sed -i "s/Version:.*$/Version: ${{ github.ref_name }}/" colored-admin-post-list.php
           sed -i "s/Stable tag:.*$/Stable tag: ${{ github.ref_name }}/" readme.txt
         shell: bash
