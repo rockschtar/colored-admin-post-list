@@ -4,7 +4,9 @@ namespace Rockschtar\WordPress\ColoredAdminPostList\Enums;
 
 enum Option : string
 {
-    case INSTALLED = "capl_installed"
-    ;
+    case INSTALLED = "capl_installed";
+
     case VERSION = "capl-version";
+
+    case ENABLED = "capl_setting_enabled";
 }

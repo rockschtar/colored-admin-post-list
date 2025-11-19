@@ -3,6 +3,7 @@
 namespace Rockschtar\WordPress\ColoredAdminPostList\Controller;
 
 use Rockschtar\WordPress\ColoredAdminPostList\Enums\AdminPage;
+use Rockschtar\WordPress\ColoredAdminPostList\Enums\Option;
 use Rockschtar\WordPress\ColoredAdminPostList\Enums\Setting;
 use Rockschtar\WordPress\ColoredAdminPostList\Models\PostStatus;
 use Rockschtar\WordPress\ColoredAdminPostList\Utils\PostStati;
@@ -69,7 +70,7 @@ class SettingsController
         );
 
         add_settings_field(
-            Setting::ENABLED,
+            Option::ENABLED->value,
             __("Enabled", "colored-admin-post-list"),
             $this->settingEnabled(...),
             Setting::PAGE_DEFAULT,
@@ -119,8 +120,8 @@ class SettingsController
 
     private function settingEnabled(): void
     {
-        $checked = checked(get_option(Setting::ENABLED, false), true, false);
-        echo '<input type="checkbox" name="' . Setting::ENABLED . '" value="1"' . $checked . '  />';
+        $checked = checked(get_option(Option::ENABLED->value, false), true, false);
+        echo '<input type="checkbox" name="' . Option::ENABLED->value . '" value="1"' . $checked . '  />';
     }
 
     private function viewSettings(): void

@@ -2,6 +2,7 @@
 
 namespace Rockschtar\WordPress\ColoredAdminPostList\Controller;
 
+use Rockschtar\WordPress\ColoredAdminPostList\Enums\Option;
 use Rockschtar\WordPress\ColoredAdminPostList\Enums\Setting;
 use Rockschtar\WordPress\ColoredAdminPostList\Utils\PostStati;
 
@@ -16,7 +17,7 @@ class StyleController
 
     public function addStyles(): void
     {
-        $isEnabled = get_option(Setting::ENABLED) === '1';
+        $isEnabled = get_option(Option::ENABLED->value) === '1';
 
         if (!$isEnabled) {
             return;

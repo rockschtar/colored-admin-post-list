@@ -38,7 +38,7 @@ class PluginController
     private function onActivation(): void
     {
         if (!get_option(Option::INSTALLED->value)) {
-            update_option(Setting::ENABLED, "1");
+            update_option(Option::ENABLED->value, "1");
             update_option(Option::INSTALLED->value, "1");
             update_option(Option::VERSION->value, PluginVersion::get());
         }
