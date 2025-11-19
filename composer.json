@@ -1,0 +1,20 @@
+{
+    "name": "rockschtar/colored-admin-post-list",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Rockschtar\\WordPress\\ColoredAdminPostList\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Stefan Helmer",
+            "email": "rockschtar@pm.me"
+        }
+    ],
+    "require-dev": {
+      "roave/security-advisories": "dev-latest",
+      "squizlabs/php_codesniffer": "3.*"
+    }
+}
