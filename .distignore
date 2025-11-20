@@ -6,3 +6,4 @@ composer.lock
 .git
 .github
 .wordpress-org
+.distignore
