@@ -15,14 +15,10 @@ class SettingsController
     private function __construct()
     {
         add_action("admin_init", $this->registerSettings(...));
-        ;
         add_action("admin_menu", $this->adminMenu(...));
-        ;
         add_action('admin_print_scripts-settings_page_' . AdminPage::ADMIN_PAGE_OPTIONS, $this->adminPrintScriptsSettings(...));
         add_action('admin_print_scripts-posts_page_' . AdminPage::ADMIN_PAGE_OPTIONS, $this->adminPrintScriptsSettings(...));
-        ;
         add_filter("plugin_action_links_" . CAPL_PLUGIN, $this->pluginActionLinks(...));
-        ;
     }
 
     private function adminMenu(): void
@@ -52,20 +48,22 @@ class SettingsController
 
     private function registerSettings(): void
     {
-        $dummyCallback = static function () {
-        };
+        register_setting(
+            Setting::PAGE_DEFAULT,
+            Option::ENABLED->value
+        );
 
         add_settings_section(
             Setting::SECTION_GENERAL,
             __("General", "colored-admin-post-list"),
-            $dummyCallback,
+            static fn() => '',
             Setting::PAGE_DEFAULT
         );
 
         add_settings_section(
             Setting::SECTION_COLORS_DEFAULT,
             __("Default Post Statuses", "colored-admin-post-list"),
-            $dummyCallback,
+            static fn() => '',
             Setting::PAGE_DEFAULT
         );
 
@@ -84,8 +82,12 @@ class SettingsController
                 $postStatus->getOptionKey(),
                 $postStatus->getLabel(),
                 static function () use ($postStatus) {
-                    $setting = get_option($postStatus->getOptionKey());
-                    echo '<input class="capl-wp-color-picker" type="text" id="' . $postStatus->getOptionKey() . '" class="regular-text" name="' . $postStatus->getOptionKey() . '" value="' . $setting . '" />';
+                    $setting = esc_attr(get_option($postStatus->getOptionKey()));
+                    $optionId = esc_attr($postStatus->getOptionKey());
+
+                    echo <<<HTML
+                        <input class="capl-wp-color-picker" type="text" id="$optionId" name="$optionId" class="regular-text"  value="{$setting}" />
+                    HTML;
                 },
                 Setting::PAGE_DEFAULT,
                 $section
@@ -112,7 +114,7 @@ class SettingsController
             add_settings_section(
                 Setting::SECTION_COLORS_CUSTOM,
                 __("Custom Post Statuses", "colored-admin-post-list"),
-                $dummyCallback,
+                static fn() => '',
                 Setting::PAGE_DEFAULT
             );
         }
@@ -120,8 +122,13 @@ class SettingsController
 
     private function settingEnabled(): void
     {
-        $checked = checked(get_option(Option::ENABLED->value, false), true, false);
-        echo '<input type="checkbox" name="' . Option::ENABLED->value . '" value="1"' . $checked . '  />';
+
+        $checked = checked(get_option(Option::ENABLED->value) === '1', true, false);
+        $name = esc_attr(Option::ENABLED->value);
+
+        echo <<<HTML
+            <input type="checkbox" name="$name" value="1" $checked />
+        HTML;
     }
 
     private function viewSettings(): void
