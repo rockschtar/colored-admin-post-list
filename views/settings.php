@@ -1,8 +1,6 @@
 <?php
 
-if (!empty($_SERVER['SCRIPT_FILENAME']) && basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME'])) {
-    die('Please do not load this screen directly. Thanks!');
-}
+defined( 'ABSPATH' ) || exit;
 
 use Rockschtar\WordPress\ColoredAdminPostList\Enums\Setting;
 

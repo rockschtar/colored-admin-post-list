@@ -4,7 +4,7 @@ namespace Rockschtar\WordPress\ColoredAdminPostList\Utils;
 
 class PluginVersion
 {
-    public static function get()
+    public static function get(): string
     {
         $plugin_data = get_file_data(CAPL_PLUGIN_FILE, [
             'Version' => 'Version',

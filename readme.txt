@@ -1,12 +1,12 @@
 === Colored Admin Post List ===
 Contributors: rockschtar
-Tags: color, highlight, post-status, status, edit-flow
+Tags: posts, color, status, highlight, poststatus
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B2WSC5FR2L8MU
-Requires at least: 6.0
+Requires at least: 6.2
 Tested up to: 6.8
 Requires PHP: 8.3
 Stable tag: develop
-License: GPLv3
+License: MIT
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Highlights the background of draft, pending, future, private, published and custom post status posts in the wordpress admin.

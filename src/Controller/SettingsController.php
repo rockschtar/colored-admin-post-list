@@ -6,6 +6,7 @@ use Rockschtar\WordPress\ColoredAdminPostList\Enums\AdminPage;
 use Rockschtar\WordPress\ColoredAdminPostList\Enums\Option;
 use Rockschtar\WordPress\ColoredAdminPostList\Enums\Setting;
 use Rockschtar\WordPress\ColoredAdminPostList\Models\PostStatus;
+use Rockschtar\WordPress\ColoredAdminPostList\Utils\PluginVersion;
 use Rockschtar\WordPress\ColoredAdminPostList\Utils\PostStati;
 
 class SettingsController
@@ -35,8 +36,11 @@ class SettingsController
     private function adminPrintScriptsSettings(): void
     {
         wp_enqueue_style("wp-color-picker");
-        wp_enqueue_script("wp-color-picker");
-        wp_enqueue_script("capl-settings", CAPL_PLUGIN_URL . "scripts/settings.js", ["jquery", "wp-color-picker"]);
+
+        $pluginVersion = PluginVersion::get();
+        $version = $pluginVersion === 'develop' ? time() : $pluginVersion;
+
+        wp_enqueue_script("capl-settings", CAPL_PLUGIN_URL . "scripts/settings.js", ["jquery", "wp-color-picker"], $version, ['in_footer' => true]);
     }
 
     private function pluginActionLinks(array $links): array
