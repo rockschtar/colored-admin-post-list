@@ -3,3 +3,6 @@ composer.json
 composer.lock
 .gitignore
 .phpcs.xml
+.git
+.github
+.wordpress-org
