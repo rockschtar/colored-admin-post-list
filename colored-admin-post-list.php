@@ -3,7 +3,7 @@
 /*
 * Plugin Name: Colored Admin Post List
 * Plugin URI: http://wordpress.org/plugins/colored-admin-post-list/
-* Description: Highlights the background of draft, pending, future, private, and published posts in the wordpress admin. Also supports custom post statuses!
+* Description: Color-code your admin post list by post status. Instantly spot drafts, pending reviews, scheduled, private, and published posts — fully customizable colors, including support for custom post statuses.
 * Author: rockschtar
 * Author URI: http://www.eracer.de
 * Version: develop
