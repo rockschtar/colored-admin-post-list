@@ -45,7 +45,7 @@ class SettingsController
 
     private function pluginActionLinks(array $links): array
     {
-        $settingsLink = '<a href="options-general.php?page=' . AdminPage::ADMIN_PAGE_OPTIONS . '">' . __("Settings", "colored-admin-post-list") . '</a>';
+        $settingsLink = '<a href="' . esc_url(admin_url('options-general.php?page=' . AdminPage::ADMIN_PAGE_OPTIONS)) . '">' . __("Settings", "colored-admin-post-list") . '</a>';
         array_unshift($links, $settingsLink);
         return $links;
     }
@@ -100,7 +100,7 @@ class SettingsController
             register_setting(
                 Setting::PAGE_DEFAULT,
                 $postStatus->getOptionKey(),
-                ['type' => 'string', 'default' => $postStatus->getDefaultColor()]
+                ['type' => 'string', 'default' => $postStatus->getDefaultColor(), 'sanitize_callback' => 'sanitize_hex_color']
             );
         };
 
@@ -114,7 +114,7 @@ class SettingsController
             $registerSettingPostStati($customPostStatus, Setting::SECTION_COLORS_CUSTOM);
         }
 
-        if (sizeof($customPostStati) > 0) {
+        if (count($customPostStati) > 0) {
             add_settings_section(
                 Setting::SECTION_COLORS_CUSTOM,
                 __("Custom Post Statuses", "colored-admin-post-list"),

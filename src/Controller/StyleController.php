@@ -30,13 +30,17 @@ class StyleController
         foreach ($postStati as $postStatus) {
             $backgroundColor = get_option($postStatus->getOptionKey());
 
-            if (!$backgroundColor) {
+            if (!$backgroundColor || !preg_match('/^#[0-9a-fA-F]{3,6}$/', $backgroundColor)) {
                 continue;
             }
 
-            $cssClass = "status-" . $postStatus->getName();
+            $cssClass = "status-" . sanitize_key($postStatus->getName());
 
             $style .= ".$cssClass { background: $backgroundColor !important }\r\n";
+        }
+
+        if ($style === '') {
+            return;
         }
 
         echo "<style>$style</style>";
