@@ -7,4 +7,3 @@ composer.lock
 .github
 .wordpress-org
 .distignore
-assets

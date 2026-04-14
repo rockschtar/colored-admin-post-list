@@ -60,7 +60,7 @@ jobs:
           find . -type d -name "node_modules" -exec rm -rf {} +
           find . -type d -name ".github" -exec rm -rf {} +
           find . -type d -name ".git" -exec rm -rf {} +
-          find . -type d -name "assets" -exec rm -rf {} +
+          find . -type d -name ".wordpress-org" -exec rm -rf {} +
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -150,7 +150,6 @@ jobs:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SLUG: colored-admin-post-list
           IGNORE_OTHER_FILES: true
-          ASSETS_DIR: assets
   wporg-deploy:
     name: wordpress.org Deploy
     needs: wporg-assets-trunk
