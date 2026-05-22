@@ -9,7 +9,8 @@
 * Version: develop
 * Requires at least: 6.2
 * Requires PHP: 8.3
-* License: MIT
+* License: GPL-3.0-or-later
+* License URI: https://www.gnu.org/licenses/gpl-3.0.html
 * Text Domain: colored-admin-post-list
 * Domain Path: /languages
 */

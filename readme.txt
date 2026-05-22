@@ -6,7 +6,7 @@ Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 8.3
 Stable tag: develop
-License: MIT
+License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Color-code your admin post list by post status. Instantly spot drafts, pending reviews, scheduled, private, and published posts at a glance.
