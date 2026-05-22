@@ -3,7 +3,7 @@ Contributors: rockschtar
 Tags: posts, color, status, highlight, post status
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B2WSC5FR2L8MU
 Requires at least: 6.2
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 8.3
 Stable tag: develop
 License: MIT
