@@ -12,11 +12,15 @@ class StyleController
 
     private function __construct()
     {
-        add_action('admin_footer-edit.php', [$this, "addStyles"]);
+        add_action('admin_enqueue_scripts', [$this, "addStyles"]);
     }
 
-    public function addStyles(): void
+    public function addStyles(string $hookSuffix): void
     {
+        if ($hookSuffix !== 'edit.php') {
+            return;
+        }
+
         $isEnabled = get_option(Option::ENABLED->value) === '1';
 
         if (!$isEnabled) {
@@ -43,6 +47,8 @@ class StyleController
             return;
         }
 
-        echo "<style>$style</style>";
+        wp_register_style('capl-post-list', false);
+        wp_enqueue_style('capl-post-list');
+        wp_add_inline_style('capl-post-list', $style);
     }
 }
