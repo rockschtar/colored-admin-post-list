@@ -15,6 +15,8 @@
 * Domain Path: /languages
 */
 
+defined('ABSPATH') || exit;
+
 use Rockschtar\WordPress\ColoredAdminPostList\Controller\PluginController;
 
 define("CAPL_PLUGIN", plugin_basename(__FILE__));

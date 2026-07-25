@@ -54,7 +54,8 @@ class SettingsController
     {
         register_setting(
             Setting::PAGE_DEFAULT,
-            Option::ENABLED->value
+            Option::ENABLED->value,
+            ['type' => 'string', 'default' => '', 'sanitize_callback' => static fn($value) => $value === '1' ? '1' : '']
         );
 
         add_settings_section(
