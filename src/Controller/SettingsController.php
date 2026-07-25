@@ -88,7 +88,7 @@ class SettingsController
                 $postStatus->getLabel(),
                 static function () use ($postStatus) {
                     printf(
-                        '<input class="capl-wp-color-picker" type="text" id="%1$s" name="%1$s" class="regular-text" value="%2$s" />',
+                        '<input class="capl-wp-color-picker regular-text" type="text" id="%1$s" name="%1$s" value="%2$s" />',
                         esc_attr($postStatus->getOptionKey()),
                         esc_attr(get_option($postStatus->getOptionKey()))
                     );
