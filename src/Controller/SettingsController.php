@@ -87,12 +87,11 @@ class SettingsController
                 $postStatus->getOptionKey(),
                 $postStatus->getLabel(),
                 static function () use ($postStatus) {
-                    $setting = esc_attr(get_option($postStatus->getOptionKey()));
-                    $optionId = esc_attr($postStatus->getOptionKey());
-
-                    echo <<<HTML
-                        <input class="capl-wp-color-picker" type="text" id="$optionId" name="$optionId" class="regular-text"  value="{$setting}" />
-                    HTML;
+                    printf(
+                        '<input class="capl-wp-color-picker" type="text" id="%1$s" name="%1$s" class="regular-text" value="%2$s" />',
+                        esc_attr($postStatus->getOptionKey()),
+                        esc_attr(get_option($postStatus->getOptionKey()))
+                    );
                 },
                 Setting::PAGE_DEFAULT,
                 $section
@@ -127,13 +126,11 @@ class SettingsController
 
     private function settingEnabled(): void
     {
-
-        $checked = checked(get_option(Option::ENABLED->value) === '1', true, false);
-        $name = esc_attr(Option::ENABLED->value);
-
-        echo <<<HTML
-            <input type="checkbox" name="$name" value="1" $checked />
-        HTML;
+        printf(
+            '<input type="checkbox" name="%s" value="1" %s />',
+            esc_attr(Option::ENABLED->value),
+            checked(get_option(Option::ENABLED->value) === '1', true, false)
+        );
     }
 
     private function viewSettings(): void
