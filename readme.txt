@@ -1,7 +1,7 @@
 === Colored Admin Post List ===
 Contributors: rockschtar
 Tags: posts, color, status, highlight, post status
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B2WSC5FR2L8MU
+Donate link: https://ko-fi.com/shdevelopment
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 8.3
