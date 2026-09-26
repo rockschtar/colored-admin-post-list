@@ -57,3 +57,18 @@ msgstr "Einstellungen zurücksetzen"
 #: views/settings.php:21
 msgid "Are you sure?"
 msgstr "Bist Du Dir sicher?"
+
+msgid "Donate"
+msgstr "Spenden"
+
+msgid "Enjoying this plugin?"
+msgstr "Gefällt dir das Plugin?"
+
+msgid "Colored Admin Post List is free and developed in my spare time. If it makes your daily work a little easier, I'd be happy about a small donation."
+msgstr "Colored Admin Post List ist kostenlos und entsteht in meiner Freizeit. Wenn es dir die tägliche Arbeit etwas leichter macht, freue ich mich über eine kleine Spende."
+
+msgid "Buy me a coffee"
+msgstr "Spendier mir einen Kaffee"
+
+msgid "Or leave a review on WordPress.org"
+msgstr "Oder hinterlasse eine Bewertung auf WordPress.org"

@@ -24,6 +24,7 @@ define("CAPL_PLUGIN_DIR", plugin_dir_path(__FILE__));
 define("CAPL_PLUGIN_URL", plugin_dir_url(__FILE__));
 define("CAPL_PLUGIN_RELATIVE_DIR", dirname(plugin_basename(__FILE__)));
 const CAPL_PLUGIN_FILE = __FILE__;
+const CAPL_DONATE_URL = 'https://ko-fi.com/shdevelopment';
 
 spl_autoload_register(static function ($class) {
     $namespace = 'Rockschtar\\WordPress\\ColoredAdminPostList\\';
