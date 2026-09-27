@@ -16,7 +16,7 @@ class PluginController
         register_deactivation_hook(CAPL_PLUGIN_FILE, $this->onDeactivation(...));
         register_uninstall_hook(CAPL_PLUGIN_FILE, [__CLASS__, "onUninstall"]);
         add_action('plugins_loaded', $this->pluginsLoaded(...));
-        add_filter('plugin_row_meta', $this->donationLink(...), 10, 2);
+        add_filter('plugin_action_links_' . CAPL_PLUGIN, $this->donationLink(...), 10, 2);
 
         SettingsController::init();
         StyleController::init();
@@ -61,11 +61,11 @@ class PluginController
             return $pluginMeta;
         }
 
-        $pluginMeta[] = sprintf(
+        array_unshift($pluginMeta, sprintf(
             '<a href="%s" target="_blank" rel="noopener noreferrer">%s</a>',
             esc_url(CAPL_DONATE_URL),
             esc_html__('Donate', 'colored-admin-post-list')
-        );
+        ));
 
         return $pluginMeta;
     }
