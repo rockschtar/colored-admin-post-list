@@ -4,6 +4,7 @@ namespace Rockschtar\WordPress\ColoredAdminPostList\Controller;
 
 use Rockschtar\WordPress\ColoredAdminPostList\Enums\Option;
 use Rockschtar\WordPress\ColoredAdminPostList\Enums\Setting;
+use Rockschtar\WordPress\ColoredAdminPostList\Utils\PluginVersion;
 use Rockschtar\WordPress\ColoredAdminPostList\Utils\PostStati;
 
 class StyleController
@@ -47,7 +48,10 @@ class StyleController
             return;
         }
 
-        wp_register_style('capl-post-list', false);
+        $pluginVersion = PluginVersion::get();
+        $version = $pluginVersion === 'develop' ? time() : $pluginVersion;
+
+        wp_register_style('capl-post-list', false, [], $version);
         wp_enqueue_style('capl-post-list');
         wp_add_inline_style('capl-post-list', $style);
     }
