@@ -18,7 +18,7 @@ use Rockschtar\WordPress\ColoredAdminPostList\Enums\Setting;
 </style>
 <div class="wrap">
     <div id="icon-themes" class="icon32"><br></div>
-    <h2><?php echo __("Colored Admin Post List Settings", "colored-admin-post-list") ?></h2>
+    <h2><?php esc_html_e("Colored Admin Post List Settings", "colored-admin-post-list") ?></h2>
     <div class="capl-settings">
         <div class="capl-settings-main">
             <form method="post" action="options.php">
