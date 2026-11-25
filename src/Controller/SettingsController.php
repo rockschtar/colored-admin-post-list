@@ -17,8 +17,7 @@ class SettingsController
     {
         add_action("admin_init", $this->registerSettings(...));
         add_action("admin_menu", $this->adminMenu(...));
-        add_action('admin_print_scripts-settings_page_' . AdminPage::ADMIN_PAGE_OPTIONS, $this->adminPrintScriptsSettings(...));
-        add_action('admin_print_scripts-posts_page_' . AdminPage::ADMIN_PAGE_OPTIONS, $this->adminPrintScriptsSettings(...));
+        add_action('admin_enqueue_scripts', $this->adminEnqueueScripts(...));
         add_filter("plugin_action_links_" . CAPL_PLUGIN, $this->pluginActionLinks(...));
     }
 
@@ -33,14 +32,24 @@ class SettingsController
         );
     }
 
-    private function adminPrintScriptsSettings(): void
+    private function adminEnqueueScripts(string $hookSuffix): void
     {
+        if ($hookSuffix !== 'settings_page_' . AdminPage::ADMIN_PAGE_OPTIONS) {
+            return;
+        }
+
         wp_enqueue_style("wp-color-picker");
 
         $pluginVersion = PluginVersion::get();
         $version = $pluginVersion === 'develop' ? time() : $pluginVersion;
 
-        wp_enqueue_script("capl-settings", CAPL_PLUGIN_URL . "scripts/settings.js", ["jquery", "wp-color-picker"], $version, ['in_footer' => true]);
+        wp_enqueue_script(
+            "capl-settings",
+            CAPL_PLUGIN_URL . "scripts/settings.js",
+            ["jquery", "wp-color-picker"],
+            $version,
+            ['in_footer' => true]
+        );
     }
 
     private function pluginActionLinks(array $links): array
